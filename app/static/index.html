@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Climate LSTM Forecast</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">KJS-CES-03</p>
+          <h1>Climate Intelligence Forecast</h1>
+        </div>
+        <div class="status-pill" id="serviceStatus">Checking service…</div>
+      </header>
+
+      <main class="layout">
+        <section class="panel controls-panel">
+          <h2>Forecast inputs</h2>
+
+          <label class="field">
+            <span>Location</span>
+            <select id="locationSelect">
+                <option value="New_Delhi">New Delhi, India</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Historical max temperatures (°C)</span>
+            <textarea id="historyInput" rows="6" spellcheck="false"></textarea>
+          </label>
+
+          <div class="button-row">
+            <button id="sampleBtn" class="secondary">Load sample</button>
+            <button id="predictBtn">Generate forecast</button>
+          </div>
+
+          <div id="errorBox" class="message error hidden"></div>
+          <div id="warningBox" class="message warning hidden"></div>
+        </section>
+
+        <section class="panel result-panel">
+          <h2>Forecast card</h2>
+
+          <div class="forecast-card">
+            <div>
+              <p class="forecast-label">Location</p>
+              <h3 id="forecastLocation">—</h3>
+            </div>
+            <div>
+              <p class="forecast-label">Forecast date</p>
+              <h3 id="forecastDate">—</h3>
+            </div>
+            <div class="big-value-wrap">
+              <p class="forecast-label">Predicted max temperature</p>
+              <div class="big-value" id="predictionValue">—</div>
+            </div>
+          </div>
+
+          <div class="meta-grid">
+            <div>
+              <span>Model ID</span>
+              <strong id="modelId">—</strong>
+            </div>
+            <div>
+              <span>Sequence length</span>
+              <strong id="sequenceLength">—</strong>
+            </div>
+            <div>
+              <span>Generated</span>
+              <strong id="generatedAt">—</strong>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <section class="panel chart-panel">
+        <div class="section-heading">
+          <h2>Observed vs forecast</h2>
+        </div>
+        <svg id="trendChart" viewBox="0 0 760 260" preserveAspectRatio="none" aria-label="Temperature trend chart"></svg>
+      </section>
+
+      <section class="panel metrics-panel">
+        <h2>Model evaluation</h2>
+        <div class="metrics-grid">
+          <div class="metric-box">
+            <span>Model MAE</span>
+            <strong id="metricMae">—</strong>
+          </div>
+          <div class="metric-box">
+            <span>Model RMSE</span>
+            <strong id="metricRmse">—</strong>
+          </div>
+          <div class="metric-box">
+            <span>Baseline MAE</span>
+            <strong id="baselineMae">—</strong>
+          </div>
+          <div class="metric-box">
+            <span>Baseline RMSE</span>
+            <strong id="baselineRmse">—</strong>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
